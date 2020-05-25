@@ -112,8 +112,9 @@ server <- function(input, output) {
   )
   
   
+  # no longer need for this
   # mapa RO
-  rondonia <- jsonlite::read_json("https://raw.githubusercontent.com/luizpedone/municipal-brazilian-geodata/master/data/RO.json")
+  #rondonia <- jsonlite::read_json("https://raw.githubusercontent.com/luizpedone/municipal-brazilian-geodata/master/data/RO.json")
   
   rondonia$features <- rondonia$features %>%
     purrr::map(function(x){
@@ -129,7 +130,7 @@ server <- function(input, output) {
       group_by(city) %>%
       summarise(Casos = max(totalCases)) %>%
       e_charts(city) %>%
-      e_map_register("Rondonia", rondonia) %>%
+      # e_map_register("Rondonia", rondonia) %>%
       e_map(Casos, map = "Rondonia", emphasis = list(itemStyle = list(shadowBlur = 3)),
             roam = TRUE, zoom = 1) %>%
       e_visual_map(Casos) %>%
@@ -560,7 +561,7 @@ server <- function(input, output) {
       merge(y = ibge, by.x = 'state', by.y = 'Sigla') %>%
       rename(Casos = 'totalCasesMS') %>%
       e_charts(Estado) %>%
-      e_map_register("Brazil", brazil) %>%
+      # e_map_register("Brazil", brazil) %>%
       e_map(Casos, map = "Brazil", emphasis = list(itemStyle = list(shadowBlur = 3)),
             roam = TRUE, zoom = 1) %>%
       e_visual_map(Casos) %>%
@@ -796,7 +797,7 @@ server <- function(input, output) {
     estudo_ibge %>%
       mutate(Leitos = round(Leitos_UTI_100mil_hab_Ind, 1)) %>%
       e_charts(Nome_municipio) %>%
-      e_map_register("Rondonia", rondonia) %>%
+      # e_map_register("Rondonia", rondonia) %>%
       e_map(Leitos, map = "Rondonia", emphasis = list(itemStyle = list(shadowBlur = 3))) %>%
       e_visual_map(Leitos) %>%
       e_tooltip()
@@ -816,7 +817,7 @@ server <- function(input, output) {
     estudo_ibge %>%
       mutate(Respiradores = round(Respiradores_100mil_hab_Ind, 1)) %>%
       e_charts(Nome_municipio) %>%
-      e_map_register("Rondonia", rondonia) %>%
+      # e_map_register("Rondonia", rondonia) %>%
       e_map(Respiradores, map = "Rondonia", emphasis = list(itemStyle = list(shadowBlur = 3))) %>%
       e_visual_map(Respiradores) %>%
       e_tooltip()
@@ -837,7 +838,7 @@ server <- function(input, output) {
     estudo_ibge %>%
       mutate(Enfermeiros = round(Enfermeiros_100mil_hab_Ind, 1)) %>%
       e_charts(Nome_municipio) %>%
-      e_map_register("Rondonia", rondonia) %>%
+      # e_map_register("Rondonia", rondonia) %>%
       e_map(Enfermeiros, map = "Rondonia", emphasis = list(itemStyle = list(shadowBlur = 3))) %>%
       e_visual_map(Enfermeiros) %>%
       e_tooltip()
@@ -857,7 +858,7 @@ server <- function(input, output) {
     estudo_ibge %>%
       mutate(Médicos = round(Medicos_100mil_hab_Ind, 1)) %>%
       e_charts(Nome_municipio) %>%
-      e_map_register("Rondonia", rondonia) %>%
+      # e_map_register("Rondonia", rondonia) %>%
       e_map(Médicos, map = "Rondonia", emphasis = list(itemStyle = list(shadowBlur = 3))) %>%
       e_visual_map(Médicos) %>%
       e_tooltip()

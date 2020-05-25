@@ -61,7 +61,9 @@ body <- bs4DashBody(
     
     bs4TabItems(
       bs4TabItem('sobre',
-                 fluidPage(
+                 tagList(
+                   # asynchronously register the map of Rondonia _once_
+                   e_map_register_ui("Rondonia", "https://raw.githubusercontent.com/luizpedone/municipal-brazilian-geodata/master/data/RO.json", async = TRUE),
                    tags$img(src = 'home-banner.jpg', height = 200, width = 1040, align = 'center'),
                    
                    #bs4Box(
@@ -165,7 +167,7 @@ body <- bs4DashBody(
       ),
     
     bs4TabItem('dados_gerais', 
-            fluidPage(
+            tagList(
               p('Última atualização em:', format(Sys.time(), '%d/%m/%Y')),
               fluidRow(
                         bs4Box(
@@ -262,7 +264,7 @@ body <- bs4DashBody(
             )), #fim subitem1
     
     bs4TabItem('dados_municipios',
-            fluidPage(fluidRow( 
+            tagList(fluidRow( 
                         bs4Box(
                           title = 'Top 5 dos municípios com mais casos confirmados',
                           withSpinner(echarts4rOutput('plot_cidades'), type = 6)
@@ -281,7 +283,7 @@ body <- bs4DashBody(
     ), # fim municipios
           
     bs4TabItem('dados_perfil',
-               fluidPage(
+               tagList(
                  fluidRow(
                         bs4Box(
                           width = 8,
@@ -318,7 +320,7 @@ body <- bs4DashBody(
     
     
     bs4TabItem('dados_gerais_BR',
-            fluidPage(fluidRow(
+            tagList(fluidRow(
                         bs4Box(
                           title = 'Sumário Geral',
                           background = NULL,
@@ -391,7 +393,7 @@ body <- bs4DashBody(
     ), # fecha item 'nacional'
     
     bs4TabItem('regioes',
-            fluidPage(fluidRow(
+            tagList(fluidRow(
                 bs4Box(
                   title = 'Casos por região',
                   width = 12,
@@ -437,7 +439,7 @@ body <- bs4DashBody(
     ),
     
     bs4TabItem('recursos_ibge',
-               fluidPage(
+               tagList(
                  fluidRow(
                         bs4Box(
                           width = 12,
@@ -561,7 +563,7 @@ body <- bs4DashBody(
                )),
     
     bs4TabItem('combate',
-              fluidPage(
+              tagList(
                 bs4Box(
                  title = 'Ações de Combate ao COVID-19',
                  width = 12,
@@ -582,7 +584,7 @@ body <- bs4DashBody(
     ),
     
     bs4TabItem('link',
-               fluidPage(
+               tagList(
                 blockQuote(
                   tags$p('Acesse a', HTML(paste0(tags$a(href = 'https://www.paho.org/bra/index.php?option=com_content&view=article&id=6101:covid19&Itemid=875',
                                                         'Folha Informativa'))),
