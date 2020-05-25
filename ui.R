@@ -3,6 +3,8 @@
 #            UI 
 #################################################
 
+addResourcePath("www", "www")
+
 
 navbar <- bs4DashNavbar(column(12, div(img(src = 'brasao.png', width = 55, height = 65), 
                             "Painel de Monitoramento COVID-19", 
@@ -63,7 +65,7 @@ body <- bs4DashBody(
       bs4TabItem('sobre',
                  tagList(
                    # asynchronously register the map of Rondonia _once_
-                   e_map_register_ui("Rondonia", "https://raw.githubusercontent.com/luizpedone/municipal-brazilian-geodata/master/data/RO.json", async = TRUE),
+                   e_map_register_ui("Rondonia", "www/rondonia.json", async = TRUE),
                    tags$img(src = 'home-banner.jpg', height = 200, width = 1040, align = 'center'),
                    
                    #bs4Box(

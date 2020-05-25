@@ -110,17 +110,6 @@ server <- function(input, output) {
       status = "danger"
     )
   )
-  
-  
-  # no longer need for this
-  # mapa RO
-  #rondonia <- jsonlite::read_json("https://raw.githubusercontent.com/luizpedone/municipal-brazilian-geodata/master/data/RO.json")
-  
-  rondonia$features <- rondonia$features %>%
-    purrr::map(function(x){
-      x$properties$name <- x$properties$NOME # copy NOME to name for tooltip
-      return(x)
-    })
 
    # mapa rondonia
   output$mapa_ro <- renderEcharts4r({
